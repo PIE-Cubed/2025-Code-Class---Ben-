@@ -19,6 +19,11 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  private Wheels leftWheel; 
+  private Wheels rightWheel; 
+  private Wheels otherLeftWheel; 
+  private Wheels alternativeRightWheel; 
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -27,6 +32,10 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    leftWheel             = new Wheels(1.1);
+    rightWheel            = new Wheels(2.1);
+    otherLeftWheel        = new Wheels(3.1);
+    alternativeRightWheel = new Wheels(4.1);
   }
 
   /**
@@ -72,7 +81,12 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when teleop is enabled. Hi im the benman */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    leftWheel.getPos();
+    rightWheel.getPos();
+    otherLeftWheel.getPos();
+    alternativeRightWheel.getPos();
+  }
 
   /** This function is called periodically during operator control. */
   @Override
